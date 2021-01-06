@@ -4,7 +4,7 @@ import requests as curl
 import json
 
 from neem import NEEM
-from neemhub_caller import get_name_for_user_id
+from neem_hub_caller import get_all_public_repos
 
 app = Flask(__name__)
 import dvc.api
@@ -28,15 +28,5 @@ def download_file ():
 
 if __name__ == '__main__':
     #app.run(port=1338,debug=True)
-    r = curl.get('https://neemgit.informatik.uni-bremen.de/api/v4/groups/9/projects')
-    result = r.json()
-    repos = {}
-    for repo in result:
-        repos[repo.get('id')] = repo.get('last_activity_at')
-
-    neems = [NEEM(repo) for repo in result]
-
-    with open('data/repos.json', 'w') as fp:
-        json.dump(repos, fp)
-
+    neems = [NEEM(repo) for repo in get_all_public_repos()]
     print('END')

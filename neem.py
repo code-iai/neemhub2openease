@@ -1,4 +1,4 @@
-from neemhub_caller import get_name_for_user_id
+from neem_hub_caller import get_name_for_user_id
 
 
 class NEEM(object):
