@@ -5,6 +5,7 @@ import json
 
 from neem import NEEM
 from neem_hub_caller import get_all_public_repos
+from neem_hub_downloader import download_regular_file_from_repository
 
 app = Flask(__name__)
 import dvc.api
@@ -29,4 +30,9 @@ def download_file ():
 if __name__ == '__main__':
     #app.run(port=1338,debug=True)
     neems = [NEEM(repo) for repo in get_all_public_repos()]
+
+    for neem in neems:
+        data = download_regular_file_from_repository("meta.json", neem.repo_id)
+        if data.status_code == 200:
+            print(data.content)
     print('END')

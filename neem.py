@@ -8,3 +8,5 @@ class NEEM(object):
         self.created_at = repo_as_json.get('created_at')
         self.last_activity_at = repo_as_json.get('last_activity_at')
         self.url = repo_as_json.get('web_url')
+        self.name = repo_as_json.get('name')
+        self.description = repo_as_json.get('description')
